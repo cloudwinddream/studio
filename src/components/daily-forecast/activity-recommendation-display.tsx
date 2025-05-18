@@ -22,24 +22,24 @@ export function ActivityRecommendationDisplay({ data }: ActivityRecommendationDi
       <CardHeader>
          <div className="flex items-center gap-3">
           <Lightbulb className="h-7 w-7 text-primary" />
-          <CardTitle className="text-2xl font-semibold">Activities for Today</CardTitle>
+          <CardTitle className="text-2xl font-semibold">今日活动建议</CardTitle>
         </div>
-        <CardDescription>Suggestions to harmonize with today's energies.</CardDescription>
+        <CardDescription>与今日能量协调的建议。</CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
         <RecommendationItem
           icon={Users}
-          title="Connect With"
+          title="宜相处之人"
           description={data.recommendedPeople}
         />
         <RecommendationItem
           icon={MapPin}
-          title="Auspicious Places"
+          title="吉利方位"
           description={data.recommendedLocations}
         />
         <RecommendationItem
           icon={Utensils}
-          title="Nourish Yourself"
+          title="饮食调养"
           description={data.healthyEatingSuggestion}
         />
       </CardContent>

@@ -9,9 +9,9 @@ export default function LittleSixArtsPage() {
         <CardHeader>
           <div className="flex items-center gap-3">
             <Puzzle className="h-8 w-8 text-primary" />
-            <CardTitle className="text-3xl font-bold">Little Six Arts Oracle (小六壬)</CardTitle>
+            <CardTitle className="text-3xl font-bold">小六壬神算</CardTitle>
           </div>
-          <CardDescription>Quick divination for immediate guidance.</CardDescription>
+          <CardDescription>快速占卜，即时指引。</CardDescription>
         </CardHeader>
       </Card>
 
@@ -19,18 +19,18 @@ export default function LittleSixArtsPage() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Construction className="h-6 w-6 text-accent" />
-            Feature Under Development
+            功能开发中
           </CardTitle>
         </CardHeader>
         <CardContent className="text-center space-y-4">
           <p className="text-muted-foreground">
-            Soon, you'll be able to perform quick Little Six Arts (Xiao Liu Ren) divinations here.
-            Ask a question and receive guidance based on traditional methods.
+            很快，您就可以在这里进行小六壬快速占卜了。
+            提出一个问题，即可根据传统方法获得指引。
           </p>
           <div className="relative w-full max-w-sm mx-auto aspect-square">
             <Image 
               src="https://placehold.co/400x400.png" 
-              alt="Little Six Arts Placeholder" 
+              alt="小六壬占位图" 
               layout="fill" 
               objectFit="contain" 
               data-ai-hint="oracle symbols"
@@ -38,7 +38,7 @@ export default function LittleSixArtsPage() {
             />
           </div>
           <p className="text-sm text-muted-foreground">
-            This feature is being crafted to provide you with swift insights.
+            此功能正在精心打造中，旨在为您提供快捷的洞察。
           </p>
         </CardContent>
       </Card>

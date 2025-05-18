@@ -9,9 +9,9 @@ export default function SettingsPage() {
         <CardHeader>
           <div className="flex items-center gap-3">
             <UserCog className="h-8 w-8 text-primary" />
-            <CardTitle className="text-3xl font-bold">User Profile</CardTitle>
+            <CardTitle className="text-3xl font-bold">用户资料</CardTitle>
           </div>
-          <CardDescription>Manage your birth information for personalized insights.</CardDescription>
+          <CardDescription>管理您的出生信息以获得个性化洞察。</CardDescription>
         </CardHeader>
         <CardContent>
           <UserProfileForm />

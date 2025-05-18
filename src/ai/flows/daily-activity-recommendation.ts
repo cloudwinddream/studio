@@ -13,7 +13,7 @@ import {z} from 'genkit';
 const DailyActivityRecommendationInputSchema = z.object({
   baziChart: z
     .string()
-    .describe("The user's Bazi chart information, including the Four Pillars and Five Elements."),
+    .describe("The user's Bazi chart information, including the Four Pillars and Five Elements. This information is provided in Chinese."),
   currentDate: z
     .string()
     .describe('The current date for which the recommendations are generated (YYYY-MM-DD).'),
@@ -25,9 +25,9 @@ export type DailyActivityRecommendationInput = z.infer<
 const DailyActivityRecommendationOutputSchema = z.object({
   recommendedPeople: z
     .string()
-    .describe('People who are suitable to interact with today.'),
-  recommendedLocations: z.string().describe('Locations suitable to visit today.'),
-  healthyEatingSuggestion: z.string().describe('Healthy eating suggestions for today.'),
+    .describe('People who are suitable to interact with today, in Chinese.'),
+  recommendedLocations: z.string().describe('Locations suitable to visit today, in Chinese.'),
+  healthyEatingSuggestion: z.string().describe('Healthy eating suggestions for today, in Chinese.'),
 });
 export type DailyActivityRecommendationOutput = z.infer<
   typeof DailyActivityRecommendationOutputSchema
@@ -43,16 +43,16 @@ const prompt = ai.definePrompt({
   name: 'dailyActivityRecommendationPrompt',
   input: {schema: DailyActivityRecommendationInputSchema},
   output: {schema: DailyActivityRecommendationOutputSchema},
-  prompt: `You are an expert in Chinese astrology, providing daily recommendations based on a user's Bazi chart and the current day's energies.
+  prompt: `您是一位中国命理专家，根据用户的八字命盘和当日的能量提供每日建议。所有输出都应该是简体中文。
 
-  Bazi Chart: {{{baziChart}}}
-  Current Date: {{{currentDate}}}
+  八字命盘信息: {{{baziChart}}}
+  当前日期: {{{currentDate}}}
 
-  Based on this information, provide personalized recommendations for:
+  基于这些信息，请提供个性化的中文建议：
 
-  - Suitable people to interact with (recommendedPeople):
-  - Locations to visit (recommendedLocations):
-  - Healthy eating suggestions (healthyEatingSuggestion):
+  - 今日适宜接触的人物 (recommendedPeople):
+  - 今日适宜前往的地点 (recommendedLocations):
+  - 今日健康饮食建议 (healthyEatingSuggestion):
   `,
 });
 

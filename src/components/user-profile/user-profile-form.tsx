@@ -27,8 +27,8 @@ import { toast } from "@/hooks/use-toast";
 import { Loader2, Save } from "lucide-react";
 
 const userProfileSchema = z.object({
-  birthDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Please enter a valid date (YYYY-MM-DD)."),
-  birthTime: z.string().regex(/^\d{2}:\d{2}$/, "Please enter a valid time (HH:MM)."),
+  birthDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "请输入有效的日期 (YYYY-MM-DD)。"),
+  birthTime: z.string().regex(/^\d{2}:\d{2}$/, "请输入有效的时间 (HH:MM)。"),
   gender: z.enum(["male", "female", "other"]).optional(),
 });
 
@@ -59,8 +59,8 @@ export function UserProfileForm() {
   function onSubmit(data: UserProfileFormData) {
     setUserProfile(data);
     toast({
-      title: "Profile Updated",
-      description: "Your information has been saved successfully.",
+      title: "资料已更新",
+      description: "您的信息已成功保存。",
       variant: "default",
     });
   }
@@ -73,12 +73,12 @@ export function UserProfileForm() {
           name="birthDate"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Birth Date</FormLabel>
+              <FormLabel>出生日期</FormLabel>
               <FormControl>
                 <Input type="date" placeholder="YYYY-MM-DD" {...field} />
               </FormControl>
               <FormDescription>
-                Enter your date of birth.
+                输入您的出生日期。
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -89,12 +89,12 @@ export function UserProfileForm() {
           name="birthTime"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Birth Time</FormLabel>
+              <FormLabel>出生时间</FormLabel>
               <FormControl>
                 <Input type="time" placeholder="HH:MM" {...field} />
               </FormControl>
               <FormDescription>
-                Enter your time of birth (24-hour format).
+                输入您的出生时间 (24小时格式)。
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -105,21 +105,21 @@ export function UserProfileForm() {
           name="gender"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Gender (Optional)</FormLabel>
+              <FormLabel>性别 (可选)</FormLabel>
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
                   <SelectTrigger>
-                    <SelectValue placeholder="Select your gender" />
+                    <SelectValue placeholder="选择您的性别" />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  <SelectItem value="male">Male</SelectItem>
-                  <SelectItem value="female">Female</SelectItem>
-                  <SelectItem value="other">Other / Prefer not to say</SelectItem>
+                  <SelectItem value="male">男</SelectItem>
+                  <SelectItem value="female">女</SelectItem>
+                  <SelectItem value="other">其他 / 不愿透露</SelectItem>
                 </SelectContent>
               </Select>
               <FormDescription>
-                Providing gender can help refine some astrological calculations.
+                提供性别信息有助于优化某些命理计算。
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -131,7 +131,7 @@ export function UserProfileForm() {
           ) : (
             <Save className="mr-2 h-4 w-4" />
           )}
-          Save Profile
+          保存资料
         </Button>
       </form>
     </Form>

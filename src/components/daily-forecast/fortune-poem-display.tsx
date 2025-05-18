@@ -12,9 +12,9 @@ export function FortunePoemDisplay({ data }: FortunePoemDisplayProps) {
       <CardHeader>
         <div className="flex items-center gap-3">
           <ScrollText className="h-7 w-7 text-primary" />
-          <CardTitle className="text-2xl font-semibold">Your Daily Verse</CardTitle>
+          <CardTitle className="text-2xl font-semibold">每日诗籤</CardTitle>
         </div>
-        <CardDescription>A moment of reflection from the stars.</CardDescription>
+        <CardDescription>来自星辰的片刻启示。</CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="p-4 border border-dashed border-primary/50 rounded-lg bg-primary/5 min-h-[160px]">
@@ -26,14 +26,14 @@ export function FortunePoemDisplay({ data }: FortunePoemDisplayProps) {
           <div className="flex items-center space-x-3 p-3 bg-card rounded-lg shadow-sm">
             <Palette className="h-6 w-6 text-accent" />
             <div>
-              <p className="text-sm text-muted-foreground">Lucky Color</p>
+              <p className="text-sm text-muted-foreground">幸运色</p>
               <p className="text-lg font-semibold text-accent-foreground">{data.luckyColor}</p>
             </div>
           </div>
           <div className="flex items-center space-x-3 p-3 bg-card rounded-lg shadow-sm">
             <Sigma className="h-6 w-6 text-accent" />
             <div>
-              <p className="text-sm text-muted-foreground">Lucky Number</p>
+              <p className="text-sm text-muted-foreground">幸运数字</p>
               <p className="text-lg font-semibold text-accent-foreground">{data.luckyNumber}</p>
             </div>
           </div>

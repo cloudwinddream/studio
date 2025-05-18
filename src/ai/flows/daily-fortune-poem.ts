@@ -18,8 +18,8 @@ const DailyFortunePoemInputSchema = z.object({
 export type DailyFortunePoemInput = z.infer<typeof DailyFortunePoemInputSchema>;
 
 const DailyFortunePoemOutputSchema = z.object({
-  poem: z.string().describe('A short fortune poem (谶语) of approximately 100 characters.'),
-  luckyColor: z.string().describe('The lucky color for the day.'),
+  poem: z.string().describe('A short fortune poem (谶语) in Chinese, approximately 100 characters.'),
+  luckyColor: z.string().describe('The lucky color for the day, in Chinese (e.g., "红色", "蓝色").'),
   luckyNumber: z.number().describe('The lucky number for the day.'),
 });
 export type DailyFortunePoemOutput = z.infer<typeof DailyFortunePoemOutputSchema>;
@@ -32,13 +32,13 @@ const prompt = ai.definePrompt({
   name: 'dailyFortunePoemPrompt',
   input: {schema: DailyFortunePoemInputSchema},
   output: {schema: DailyFortunePoemOutputSchema},
-  prompt: `You are an expert in Chinese astrology and fortune telling. Generate a short poem (谶语) of approximately 100 characters based on the user's Bazi information (birth date: {{{birthDate}}}, birth time: {{{birthTime}}}) and the current date ({{{currentDate}}}).
+  prompt: `您是一位精通中国命理和占卜的专家。请根据用户的八字信息（出生日期：{{{birthDate}}}，出生时间：{{{birthTime}}}）和当前日期（{{{currentDate}}}），生成一首约100字的简短谶语。
 
-The poem should be in traditional Chinese style, with eight lines and rhyming couplets. It should provide insights and guidance for the user's day.
+谶语应为中国传统风格，八句，押韵。它应为用户当天的生活提供见解和指引。
 
-Also, determine the lucky color and lucky number for the day based on the same information. Return luckyColor as a color name, and luckyNumber as an integer.
+同时，根据相同信息确定当天的幸运色和幸运数字。请以中文返回幸运色（例如，“红色”，“蓝色”），幸运数字以整数形式返回。
 
-Output in JSON format.
+以JSON格式输出。
 `,
 });
 

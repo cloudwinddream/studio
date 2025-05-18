@@ -20,12 +20,12 @@ const PoemInterpretationStory = () => (
     <CardHeader>
       <CardTitle className="text-xl flex items-center gap-2">
         <Wand2 className="text-accent h-5 w-5" />
-        Interpreting Your Poem
+        解读您的诗籤
       </CardTitle>
     </CardHeader>
     <CardContent>
       <p className="text-sm text-muted-foreground italic">
-        "The wise old master on the bustling street corner squinted, smoke curling from his long pipe. 'Ah,' he'd begin, 'this poem speaks of hidden currents, like a river flowing beneath a calm surface. The dragon and phoenix dance in your stars today, suggesting a meeting of significance. But beware the playful monkey, for distractions may lead you astray. The path to fortune is paved with mindful steps, young one. Remember, the brightest treasures are often found not by searching, but by being ready when they appear.' He'd then take a long puff, leaving you to ponder the myriad meanings..."
+        “街角那位睿智的老先生眯起了眼，长长的烟斗冒着袅袅青烟。‘啊，’他开口道，‘此籤预示着暗流涌动，如同平静水面下的江河。今日您星盘中龙凤呈祥，预示着一次重要的相遇。但要当心那调皮的猴子，分心可能会让您误入歧途。财富之路是用正念的步伐铺就的，年轻人。记住，最璀璨的宝藏往往不是通过寻找得到的，而是在它们出现时做好准备。’他随后深吸一口烟，留给您去琢磨这其中万千的含义……”
       </p>
     </CardContent>
   </Card>
@@ -33,12 +33,12 @@ const PoemInterpretationStory = () => (
 
 const DailyTipsCarousel = () => {
   const tips = [
-    "Embrace new opportunities with an open mind.",
-    "Communication is key in relationships today.",
-    "Focus on one task at a time for better productivity.",
-    "A short walk can refresh your mind and body.",
-    "Listen to your intuition; it has valuable insights.",
-    "Patience will be rewarded in financial matters.",
+    "以开放的心态拥抱新的机遇。",
+    "沟通是今天人际关系的关键。",
+    "一次专注于一项任务，以提高效率。",
+    "短暂的散步可以使您的身心焕然一新。",
+    "倾听您的直觉；它有宝贵的见解。",
+    "耐心将在财务问题上得到回报。",
   ];
   const [currentTip, setCurrentTip] = useState(0);
 
@@ -52,7 +52,7 @@ const DailyTipsCarousel = () => {
   return (
     <Card className="shadow-md">
       <CardHeader>
-        <CardTitle className="text-xl">Today's Wisdom</CardTitle>
+        <CardTitle className="text-xl">今日锦囊</CardTitle>
       </CardHeader>
       <CardContent>
         <p className="text-center text-lg font-medium text-primary h-12 flex items-center justify-center">
@@ -73,7 +73,7 @@ export function DailyPanel() {
 
   const fetchData = () => {
     if (!userProfile || !userProfile.birthDate || !userProfile.birthTime) {
-      setError("Please complete your user profile (birth date and time) in settings to get your daily forecast.");
+      setError("请在设置中完善您的用户资料（出生日期和时间）以获取每日运势。");
       setFortunePoemData(null);
       setActivityData(null);
       return;
@@ -90,8 +90,7 @@ export function DailyPanel() {
         const poemResult = await generateDailyFortunePoem(poemInput);
         setFortunePoemData(poemResult);
 
-        // Simplified Bazi chart string for now
-        const baziChartString = `Bazi derived from Birth Date: ${userProfile.birthDate}, Birth Time: ${userProfile.birthTime}, Gender: ${userProfile.gender || 'Not specified'}`;
+        const baziChartString = `八字来源于出生日期: ${userProfile.birthDate}, 出生时间: ${userProfile.birthTime}, 性别: ${userProfile.gender || '未指定'}`;
         const activityInput = {
           baziChart: baziChartString,
           currentDate: currentDate,
@@ -100,8 +99,8 @@ export function DailyPanel() {
         setActivityData(activityResult);
 
       } catch (e) {
-        console.error("Error fetching daily data:", e);
-        setError("Failed to fetch daily forecast. Please try again.");
+        console.error("获取每日数据时出错:", e);
+        setError("获取每日运势失败。请再试一次。");
         setFortunePoemData(null);
         setActivityData(null);
       }
@@ -112,7 +111,7 @@ export function DailyPanel() {
     if (!isLoadingProfile && userProfile) {
       fetchData();
     } else if (!isLoadingProfile && !userProfile) {
-       setError("Please set your birth date and time in settings for a personalized forecast.");
+       setError("请在设置中设定您的出生日期和时间以获取个性化运势。");
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userProfile, isLoadingProfile]);
@@ -122,7 +121,7 @@ export function DailyPanel() {
     return (
       <div className="flex justify-center items-center min-h-[300px]">
         <Loader2 className="h-12 w-12 animate-spin text-primary" />
-        <p className="ml-4 text-lg">Loading user profile...</p>
+        <p className="ml-4 text-lg">正在加载用户资料...</p>
       </div>
     );
   }
@@ -131,18 +130,18 @@ export function DailyPanel() {
      return (
       <Alert variant="destructive" className="shadow-md">
         <AlertTriangle className="h-4 w-4" />
-        <AlertTitle>Error</AlertTitle>
+        <AlertTitle>错误</AlertTitle>
         <AlertDescription>
           {error}
-          {error.includes("profile") && (
+          {error.includes("资料") && (
             <Link href="/settings" className="mt-2 block">
-              <Button variant="default" size="sm">Go to Settings</Button>
+              <Button variant="default" size="sm">前往设置</Button>
             </Link>
           )}
-           {!error.includes("profile") && (
+           {!error.includes("资料") && (
              <Button onClick={fetchData} disabled={isFetching} variant="outline" size="sm" className="mt-2">
               <RefreshCw className={`mr-2 h-4 w-4 ${isFetching ? 'animate-spin' : ''}`} />
-              Try Again
+              再试一次
             </Button>
            )}
         </AlertDescription>
@@ -155,11 +154,11 @@ export function DailyPanel() {
       {!userProfile && !isLoadingProfile && (
         <Alert variant="default" className="bg-accent/30 border-accent shadow-md">
           <Info className="h-4 w-4 text-accent-foreground" />
-          <AlertTitle className="text-accent-foreground">Complete Your Profile</AlertTitle>
+          <AlertTitle className="text-accent-foreground">完善您的资料</AlertTitle>
           <AlertDescription className="text-accent-foreground/80">
-            For personalized daily insights, please provide your birth date and time in the settings.
+            为了获得个性化的每日洞察，请在设置中提供您的出生日期和时间。
             <Link href="/settings" className="mt-2 block">
-              <Button variant="default" className="bg-accent text-accent-foreground hover:bg-accent/90" size="sm">Go to Settings</Button>
+              <Button variant="default" className="bg-accent text-accent-foreground hover:bg-accent/90" size="sm">前往设置</Button>
             </Link>
           </AlertDescription>
         </Alert>
@@ -168,8 +167,8 @@ export function DailyPanel() {
       {isFetching && (
         <div className="flex flex-col justify-center items-center min-h-[300px] space-y-4">
           <Loader2 className="h-12 w-12 animate-spin text-primary" />
-          <p className="text-lg text-primary">Generating your personalized forecast...</p>
-          <p className="text-sm text-muted-foreground">This may take a moment.</p>
+          <p className="text-lg text-primary">正在生成您的个性化运势...</p>
+          <p className="text-sm text-muted-foreground">这可能需要一些时间。</p>
         </div>
       )}
 
@@ -189,7 +188,7 @@ export function DailyPanel() {
            <div className="text-center mt-4">
             <Button onClick={fetchData} disabled={isFetching} variant="outline">
               <RefreshCw className={`mr-2 h-4 w-4 ${isFetching ? 'animate-spin' : ''}`} />
-              Refresh Forecast
+              刷新运势
             </Button>
           </div>
         </>

@@ -6,11 +6,11 @@ import { Badge } from '@/components/ui/badge';
 export function FengShuiItemCard() {
   // Placeholder data
   const item = {
-    name: "Amethyst Crystal",
+    name: "紫水晶",
     image: "https://placehold.co/300x200.png",
-    imageHint: "crystal geode",
-    meaning: "Promotes calmness, intuition, and spiritual awareness.",
-    placement: "Place on your desk or in your meditation space to enhance focus and tranquility."
+    imageHint: "crystal geode", // Keeping hint in English for better search results
+    meaning: "促进平静、直觉和精神觉醒。",
+    placement: "放置在您的书桌或冥想空间，以增强专注和平静。"
   };
 
   return (
@@ -18,9 +18,9 @@ export function FengShuiItemCard() {
       <CardHeader>
         <div className="flex items-center gap-2">
           <Gem className="h-6 w-6 text-primary" />
-          <CardTitle className="text-xl">Auspicious Item</CardTitle>
+          <CardTitle className="text-xl">开运好物</CardTitle>
         </div>
-        <CardDescription>Enhance your luck with this charm.</CardDescription>
+        <CardDescription>用这个幸运物增强您的运气。</CardDescription>
       </CardHeader>
       <CardContent className="space-y-3">
         <div className="aspect-[3/2] relative w-full rounded-md overflow-hidden">
@@ -33,11 +33,11 @@ export function FengShuiItemCard() {
           />
         </div>
         <h3 className="font-semibold text-lg text-primary-foreground">{item.name}</h3>
-        <p className="text-sm text-muted-foreground"><span className="font-medium text-foreground">Meaning:</span> {item.meaning}</p>
+        <p className="text-sm text-muted-foreground"><span className="font-medium text-foreground">寓意：</span> {item.meaning}</p>
         
       </CardContent>
       <CardFooter>
-        <p className="text-xs text-muted-foreground italic"><span className="font-medium text-foreground">Tip:</span> {item.placement}</p>
+        <p className="text-xs text-muted-foreground italic"><span className="font-medium text-foreground">提示：</span> {item.placement}</p>
       </CardFooter>
     </Card>
   );

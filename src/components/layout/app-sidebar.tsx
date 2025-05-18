@@ -28,10 +28,10 @@ import { Button } from '@/components/ui/button';
 import { useTheme } from 'next-themes';
 
 const navItems = [
-  { href: '/dashboard', label: 'Daily Forecast', icon: Sparkles },
-  { href: '/calendar', label: 'Perpetual Calendar', icon: CalendarDays },
-  { href: '/bazi-chart', label: 'Bazi Chart', icon: BookOpenText },
-  { href: '/little-six-arts', label: 'Little Six Arts', icon: Puzzle },
+  { href: '/dashboard', label: '每日运势', icon: Sparkles },
+  { href: '/calendar', label: '万年历', icon: CalendarDays },
+  { href: '/bazi-chart', label: '八字命盘', icon: BookOpenText },
+  { href: '/little-six-arts', label: '小六壬', icon: Puzzle },
 ];
 
 export function AppSidebar() {
@@ -73,10 +73,10 @@ export function AppSidebar() {
            <SidebarMenuItem>
             <SidebarMenuButton
               onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
-              tooltip={{ children: `Switch to ${theme === 'light' ? 'dark' : 'light'} mode`, className: "bg-card text-card-foreground border-border shadow-md" }}
+              tooltip={{ children: `切换到${theme === 'light' ? '深色' : '浅色'}模式`, className: "bg-card text-card-foreground border-border shadow-md" }}
             >
               <SunMoon className="h-5 w-5" />
-              <span>Toggle Theme</span>
+              <span>切换主题</span>
             </SidebarMenuButton>
           </SidebarMenuItem>
           <SidebarMenuItem>
@@ -84,11 +84,11 @@ export function AppSidebar() {
               <SidebarMenuButton
                 asChild
                 isActive={pathname === '/settings'}
-                tooltip={{ children: "Settings", className: "bg-card text-card-foreground border-border shadow-md" }}
+                tooltip={{ children: "设置", className: "bg-card text-card-foreground border-border shadow-md" }}
               >
                 <a>
                   <Settings className="h-5 w-5" />
-                  <span>Settings</span>
+                  <span>设置</span>
                 </a>
               </SidebarMenuButton>
             </Link>

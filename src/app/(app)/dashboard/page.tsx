@@ -13,17 +13,17 @@ export default function DashboardPage() {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <Sparkles className="h-8 w-8 text-primary" />
-              <CardTitle className="text-3xl font-bold tracking-tight">Daily Forecast</CardTitle>
+              <CardTitle className="text-3xl font-bold tracking-tight">每日运势</CardTitle>
             </div>
             <Link href="/settings" passHref>
               <Button variant="outline" size="sm">
                 <UserCog className="mr-2 h-4 w-4" />
-                Update Profile
+                更新资料
               </Button>
             </Link>
           </div>
           <CardDescription className="pt-1">
-            Personalized insights for your day, based on ancient wisdom and your unique Bazi.
+            基于古老智慧和您的独特八字，为您提供个性化的每日洞察。
           </CardDescription>
         </CardHeader>
       </Card>

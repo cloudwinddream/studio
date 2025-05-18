@@ -10,16 +10,16 @@ export default function PerpetualCalendarPage() {
         <CardHeader>
           <div className="flex items-center gap-3">
             <CalendarDays className="h-8 w-8 text-primary" />
-            <CardTitle className="text-3xl font-bold">Perpetual Calendar (万年历)</CardTitle>
+            <CardTitle className="text-3xl font-bold">万年历</CardTitle>
           </div>
-          <CardDescription>Explore Gregorian and Lunar calendars, solar terms, and daily guidance.</CardDescription>
+          <CardDescription>探索公历和农历、节气以及每日指南。</CardDescription>
         </CardHeader>
       </Card>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <Card>
           <CardHeader>
-            <CardTitle>Calendar View</CardTitle>
+            <CardTitle>日历视图</CardTitle>
           </CardHeader>
           <CardContent className="flex justify-center">
             <Calendar
@@ -33,23 +33,23 @@ export default function PerpetualCalendarPage() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
                <Construction className="h-6 w-6 text-accent" />
-              Daily Details (Coming Soon)
+              每日详情 (即将推出)
             </CardTitle>
           </CardHeader>
           <CardContent className="text-center space-y-4">
             <p className="text-muted-foreground">
-              This section will display detailed information for the selected date, including:
+              此部分将显示选定日期的详细信息，包括：
             </p>
             <ul className="list-disc list-inside text-left text-muted-foreground text-sm">
-              <li>Lunar Date & Solar Terms</li>
-              <li>Heavenly Stems & Earthly Branches (干支)</li>
-              <li>Daily Suitable/Unsuitable Activities (宜忌)</li>
-              <li>Auspicious Times & Directions</li>
+              <li>农历日期与节气</li>
+              <li>天干地支</li>
+              <li>每日宜忌</li>
+              <li>吉时与吉向</li>
             </ul>
              <div className="relative w-full max-w-xs mx-auto aspect-[4/3]">
               <Image 
                 src="https://placehold.co/400x300.png" 
-                alt="Calendar Details Placeholder" 
+                alt="日历详情占位图" 
                 layout="fill" 
                 objectFit="contain" 
                 data-ai-hint="chinese almanac"

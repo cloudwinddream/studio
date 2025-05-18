@@ -12,7 +12,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: APP_NAME,
-  description: 'Your personal guide to Bazi, daily fortunes, and ancient wisdom.',
+  description: '您的个人八字、每日运势及古老智慧指南。',
 };
 
 export default function RootLayout({
@@ -21,7 +21,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="zh-CN" suppressHydrationWarning>
       <body className={`${inter.variable} antialiased`}>
         <AppProviders>
           {children}
