@@ -18,6 +18,9 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  // If using next-themes with App Router and it causes issues, you might need this.
+  // However, often it's not required with recent versions.
+  // transpilePackages: ['next-themes'],
 };
 
 export default nextConfig;
