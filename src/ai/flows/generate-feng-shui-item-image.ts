@@ -33,7 +33,7 @@ const generateFengShuiItemImageFlow = ai.defineFlow(
   },
   async (input) => {
     try {
-      const {media} = await ai.generate({
+      const {media: mediaArray} = await ai.generate({ // Renamed for clarity, 'media' from response is an array
         model: 'googleai/gemini-2.0-flash-exp', // Ensure this model is used for image generation
         prompt: `生成一张关于"${input.itemName}"的图片，该物品常被用作风水开运摆件或饰品。图片风格应美观、清晰，适合展示。`,
         config: {
@@ -41,10 +41,11 @@ const generateFengShuiItemImageFlow = ai.defineFlow(
         },
       });
 
-      if (media && media.url) {
-        return media.url; // This should be the data URI of the generated image
+      if (mediaArray && mediaArray.length > 0 && mediaArray[0] && mediaArray[0].url) {
+        return mediaArray[0].url; // Access the URL from the first media part
       } else {
-        throw new Error('Image generation did not return a media URL.');
+        console.error('Image generation result did not contain a valid media URL. Media array:', mediaArray);
+        throw new Error('Image generation did not return a valid media URL.');
       }
     } catch (error) {
       console.error('Error generating Feng Shui item image:', error);
