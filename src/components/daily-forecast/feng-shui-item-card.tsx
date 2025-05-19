@@ -4,7 +4,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import Image from 'next/image';
 import { Gem } from 'lucide-react';
-import { useState } from 'react'; // Keep useState for future flexibility if item changes
+import { useState } from 'react';
 
 // Static placeholder data
 const defaultItem = {
@@ -16,7 +16,6 @@ const defaultItem = {
 };
 
 export function FengShuiItemCard() {
-  // Potentially, itemName could be dynamic in the future, so keep it in state.
   const [itemName] = useState<string>(defaultItem.name);
 
   return (
@@ -36,8 +35,7 @@ export function FengShuiItemCard() {
             fill
             style={{ objectFit: "cover" }}
             data-ai-hint={defaultItem.imageHint}
-            className="transition-opacity duration-500"
-            priority // Added priority as it might be an important LCP element if visible early
+            // Removed className="transition-opacity duration-500" and priority for debugging
           />
         </div>
         <h3 className="font-semibold text-lg text-primary-foreground">{itemName}</h3>
