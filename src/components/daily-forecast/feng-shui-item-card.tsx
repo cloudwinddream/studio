@@ -9,8 +9,8 @@ import { useState, useEffect } from 'react';
 interface FengShuiItem {
   id: string;
   name: string;
-  imageSrc: string;
-  imageHint: string;
+  imageSrc: string; // Will use placehold.co
+  imageHint: string; // For data-ai-hint
   meaning: string;
   placement: string;
 }
@@ -19,7 +19,7 @@ const fengShuiItems: FengShuiItem[] = [
   {
     id: '1',
     name: "紫水晶", // Amethyst
-    imageSrc: "https://picsum.photos/seed/amethyst/300/200",
+    imageSrc: "https://placehold.co/300x200.png",
     imageHint: "crystal geode",
     meaning: "促进平静、直觉和精神觉醒。",
     placement: "放置在您的书桌或冥想空间，以增强专注和平静。"
@@ -27,7 +27,7 @@ const fengShuiItems: FengShuiItem[] = [
   {
     id: '2',
     name: "金蟾", // Money Frog
-    imageSrc: "https://picsum.photos/seed/moneyfrog/300/200",
+    imageSrc: "https://placehold.co/300x200.png",
     imageHint: "golden toad",
     meaning: "招财进宝，财源广进。",
     placement: "放置在家中或办公室的财位，面向门口。"
@@ -35,7 +35,7 @@ const fengShuiItems: FengShuiItem[] = [
   {
     id: '3',
     name: "风水轮", // Feng Shui Water Wheel
-    imageSrc: "https://picsum.photos/seed/waterwheel/300/200",
+    imageSrc: "https://placehold.co/300x200.png",
     imageHint: "water feature",
     meaning: "时来运转，催财升运。",
     placement: "宜放置在客厅或办公室的偏财位，水流朝内。"
@@ -43,7 +43,7 @@ const fengShuiItems: FengShuiItem[] = [
   {
     id: '4',
     name: "平安扣", // Safety Buckle
-    imageSrc: "https://picsum.photos/seed/safetybuckle/300/200",
+    imageSrc: "https://placehold.co/300x200.png",
     imageHint: "jade donut",
     meaning: "锁住平安，岁岁平安。",
     placement: "可随身佩戴或挂于车内、床头。"
@@ -74,7 +74,7 @@ export function FengShuiItemCard() {
           <Gem className="h-6 w-6 text-primary" />
           <CardTitle className="text-xl">开运好物</CardTitle>
         </div>
-        <CardDescription>用这个幸运物增强您的运气。</CardDescription>
+        <CardDescription>用这个随机挑选的幸运物增强您的运气。</CardDescription>
       </CardHeader>
       <CardContent className="space-y-3">
         <div className="aspect-[3/2] relative w-full rounded-md overflow-hidden bg-muted">
@@ -84,10 +84,10 @@ export function FengShuiItemCard() {
             fill
             style={{ objectFit: "cover" }}
             data-ai-hint={currentItem.imageHint}
-            priority={false} // Let Next.js decide, or set to true if critical
+            priority={false}
           />
         </div>
-        <h3 className="font-semibold text-lg text-primary-foreground">{currentItem.name}</h3>
+        <h3 className="font-semibold text-lg text-primary">{currentItem.name}</h3>
         <p className="text-sm text-muted-foreground"><span className="font-medium text-foreground">寓意：</span> {currentItem.meaning}</p>
       </CardContent>
       <CardFooter>
@@ -96,3 +96,4 @@ export function FengShuiItemCard() {
     </Card>
   );
 }
+
