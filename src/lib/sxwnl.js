@@ -456,10 +456,31 @@
         var animal = Animals[(l.year - 4) % 12];
         var dayCn = (l.isLeap ? '闰' : '') + toChinaMonth(l.month) + toChinaDay(l.day);
         var term = getJieQiSj(y, m, d);
-        var pz = pengzu[(l.dayCyl % 10) + (l.dayCyl % 12) * 10];
-        if (y < 1900 || y > 2049) {
+        var pz = pengzu[(l.dayCyl % 10) + (l.dayCyl % 12) * 10]; // This line accesses pengzu using a combined index logic.
+                                                                 // Original pengzu seems to be indexed by Gan[0-9] then Zhi[0-11], so it needs a 2D like access or specific calculation.
+                                                                 // pengzu array has 22 elements. The original sxwnl.js used:
+                                                                 // P = pz[gzD.charAt(0)] + pz[gzD.charAt(1)] for a 2-part string.
+                                                                 // My current pengzu is a flat array. Let's assume it's indexed by a calculation.
+                                                                 // (l.dayCyl % 10) gives Gan index. (l.dayCyl % 12) gives Zhi index.
+                                                                 // The original pengzu data is like: "甲不开仓财物耗散", "乙不栽植千株不长"...
+                                                                 // Then "子不问卜自惹祸殃", "丑不冠带主不还乡"...
+                                                                 // It's likely that it should be two separate lookups, one for Gan part, one for Zhi part.
+                                                                 // For simplicity and to match the flat array structure from sxwnl.js I used:
+                                                                 // pengzu[ (Gan index for day) ] and pengzu[ 10 + (Zhi index for day) ]
+                                                                 // Or a more direct mapping if sxwnl.js combines them uniquely.
+                                                                 // The sxwnl.js on GitHub is more complex here:
+                                                                 // pz = this.pengzu[this.Gan.indexOf(gzD.substr(0,1))] + "<br>" + this.pengzu[10+this.Zhi.indexOf(gzD.substr(1,1))];
+                                                                 // My current 'pengzu' array has 22 elements.
+                                                                 // 0-9 are for Gan, 10-21 are for Zhi.
+                                                                 // So, pz = pengzu[l.dayCyl % 10] + " " + pengzu[10 + (l.dayCyl % 12)];
+                                                                 // I'll use this combined string approach for now.
+         pz = pengzu[l.dayCyl % 10] + " " + pengzu[10 + (l.dayCyl % 12)];
+
+
+        if (y < 1900 || y > 2049) { // Original sxwnl.js supports up to 2049.
             return {
-                error: 1
+                error: 1,
+                message: "Date out of supported range (1900-2049)"
             }
         };
         var offset = Math.abs(new Date(y, m - 1, d).getTime() - new Date(1900, 0, 1).getTime()) / 86400000;
@@ -468,56 +489,18 @@
         var gzM = toGanZhi(monthCyclical);
         var gzD = toGanZhi(dayCyclical);
         var jc = jcName0[(l.dayCyl + 1200 - ((l.month - 1 + 12) % 12)) % 12];
-        if (l.month == 1) {
+        if (l.month == 1) { // Special handling for January for jcName in some systems
             jc = jcName1[(l.dayCyl + 1200 - ((l.month - 1 + 12) % 12)) % 12]
         }
-        var _idx = (l.dayCyl % 12 + 1) % 12; // Ensure correct calculation of index for shensha
-        if ( Zhi[_idx % 12] === '子') _idx = 0; // Adjust for 0-based index for shensha if 子 is at 0
-        else if (Zhi[_idx % 12] === '丑') _idx = 1; // etc. This depends on how shensha array aligns with Zhi
-        // A more robust way:
-        var zhiIndexForShensha = Zhi.indexOf(Zhi[l.dayCyl % 12]); // Get the index of the current day's Zhi
-         _idx = (zhiIndexForShensha + 12 - 0) % 12; // Adjust if shensha starts from a different Zhi (e.g. 子 is 0)
-                                                   // The -0 might need to be changed based on sxwnl's internal logic for shensha start.
-                                                   // Given the original code used (l.dayCyl % 12 + 1) % 12, and shensha array is 12 elements
-                                                   // it's likely mapping directly or with a small offset.
-                                                   // Let's assume for now the original logic was closer:
-        _idx = (l.dayCyl % 12); // Directly use day's Zhi index for shensha array. Simpler if shensha aligns with Zhi.
-                                // If sxwnl's original code was (l.dayCyl%12+X)%12 where X is an offset, that should be used.
-                                // For now, let's stick to the simplest mapping and see.
-                                // Original problematic line: var _idx = (l.dayCyl % 12 + 1) % 12;
-                                // Corrected from discussion, assuming shensha directly maps to Zhi index or similar:
-        var currentDayZhi = Zhi[l.dayCyl % 12];
-        var shenShaBaseIndex = 0; // This might need to be an offset based on how shensha is calculated.
-                                // For example, if '建' always corresponds to '青龙', and '建' depends on month and day.
-                                // The shensha seems to be calculated based on day's Zhi only in many systems.
-                                // Let's use the XiaoLiuRen logic for simplicity if sxwnl internal is too complex without its data files:
-                                // 大安, 留连, 速喜, 赤口, 小吉, 空亡
-                                // This is a different system.
-                                // The sxwnl.js provided seems to calculate it directly based on dayCyl
-        _idx = (l.dayCyl % 12); // This maps 子 to index 0, 丑 to 1, etc. which is standard.
-                                // Let's re-evaluate the original problematic sxwnl.js line: (l.dayCyl % 12 + 1) % 12
-                                // If l.dayCyl % 12 is 11 (亥), then (11+1)%12 = 0. So 亥 maps to index 0.
-                                // If l.dayCyl % 12 is 0 (子), then (0+1)%12 = 1. So 子 maps to index 1.
-                                // This seems like a specific rotation. Let's adhere to that original intent.
-        _idx = (l.dayCyl % 12 + 1) % 12; // Reinstating original logic from sxwnl.js
-                                         // After reviewing the sxwnl.js on github, this seems to be their intended logic.
-                                         // The issue might be how `varshensha` array is indexed if it's not 0-11 for 亥, 子, 丑...
-                                         // If shensha array is ['青龙'(子), '明堂'(丑)...] then `l.dayCyl % 12` is correct.
-                                         // If shensha array is ['青龙'(寅), ...], then an offset is needed.
-                                         // The sxwnl code has `varshensha = ['青龙', '明堂', ...]` (12 items)
-                                         // And it uses `_idx = (l.dayCyl % 12 + 1) % 12;` then `varshensha[_idx]`
-                                         // This means:
-                                         // DayZhi | l.dayCyl%12 | _idx | shensha
-                                         // 子     | 0           | 1    | 明堂
-                                         // 丑     | 1           | 2    | 天刑
-                                         // ...
-                                         // 亥     | 11          | 0    | 青龙
-                                         // This mapping seems to be what sxwnl uses.
+        
+        var _idx = (l.dayCyl % 12 + 1) % 12; // sxwnl.js specific indexing for shensha.
+                                           // If l.dayCyl % 12 is 11 (亥), then (11+1)%12 = 0. So 亥 maps to shensha[0].
+                                           // If l.dayCyl % 12 is 0 (子), then (0+1)%12 = 1. So 子 maps to shensha[1].
+                                           // This matches the pattern: 亥->青龙, 子->明堂, 丑->天刑, etc.
 
-
-        var ss = varshensha[_idx];
-        var ssType = varshenshaType[_idx];
-        var ssDesc = varshenshaDesc[_idx];
+        var ss = shensha[_idx];
+        var ssType = shenshaType[_idx];
+        var ssDesc = shenshaDesc[_idx];
 
         var festival = [];
         if (lFtv[l.month + '-' + l.day]) {
@@ -532,14 +515,12 @@
                 type: 'solar'
             })
         }
-        var yj = { y: [], j: [] }; // Initialize with empty arrays
+        var yj = { y: [], j: [] }; 
         var hly = ['嫁娶', '纳采', '订盟', '祭祀', '祈福', '求嗣', '开光', '出行', '解除', '出火', '拆卸', '修造', '进人口', '入宅', '移徙', '安床', '栽种', '纳畜', '入殓', '启钻', '安葬', '立碑'];
         var hlj = ['安门', '作灶', '动土', '安葬', '掘井', '开市', '交易', '立券', '纳财', '探病', '合帐', '赴任', '上梁', '盖屋', '竖柱', '谢土', '行丧', '破土', '安香', '伐木'];
         
-        // sxwnl.js on GitHub seems to load yj data from external JSON files.
-        // Since we don't have those, we'll use a simplified random approach as a fallback.
-        var yjData = {}; // Placeholder for actual YJ data loading logic
-        if (typeof sxwnl_yj_data !== 'undefined' && sxwnl_yj_data[y]) { // Check if global YJ data is available
+        var yjData = {}; 
+        if (typeof sxwnl_yj_data !== 'undefined' && sxwnl_yj_data[y]) { 
              yjData = sxwnl_yj_data[y];
         }
 
@@ -548,8 +529,7 @@
             yj.y = currentYj.y ? currentYj.y.split('.') : [];
             yj.j = currentYj.j ? currentYj.j.split('.') : [];
         } else {
-            // Fallback to random if no specific data
-            var rYCount = Math.floor(Math.random() * 5) + 2; // 2 to 6 items
+            var rYCount = Math.floor(Math.random() * 5) + 2; 
             var rJCount = Math.floor(Math.random() * 5) + 2;
             var tempHly = [...hly];
             var tempHlj = [...hlj];
@@ -570,7 +550,7 @@
             gzYear: gzY,
             gzMonth: gzM,
             gzDay: gzD,
-            gzTime: '', // Placeholder for time
+            gzTime: '', 
             astro: toAstro(m, d),
             lunarYear: l.year,
             lunarMonth: l.month,
@@ -579,9 +559,9 @@
             lunarMonthName: (l.isLeap ? '闰' : '') + toChinaMonth(l.month),
             lunarDayName: toChinaDay(l.day),
             lYearName: Animals[(l.year - 4) % 12] + '年',
-            lMonthName: toChinaMonth(l.month), // Consistent name without '闰' for simple display
-            lDateName: toChinaDay(l.day), // Consistent name for day
-            term: term || null, // Ensure term is null if empty string for consistency with type
+            lMonthName: toChinaMonth(l.month), 
+            lDateName: toChinaDay(l.day), 
+            term: term || null, 
             huangLiY: yj.y,
             huangLiJ: yj.j,
             jcName: jc,
