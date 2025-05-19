@@ -16,11 +16,17 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'picsum.photos',
+        port: '',
+        pathname: '/**',
+      }
     ],
   },
   // If using next-themes with App Router and it causes issues, you might need this.
   // However, often it's not required with recent versions.
-  // transpilePackages: ['next-themes'],
+  transpilePackages: ['next-themes', 'sxwnl'],
 };
 
 export default nextConfig;
