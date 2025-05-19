@@ -1,3 +1,4 @@
+
 'use server';
 /**
  * @fileOverview Generates an image for a Feng Shui item using AI.
@@ -33,7 +34,7 @@ const generateFengShuiItemImageFlow = ai.defineFlow(
   },
   async (input) => {
     try {
-      const {media: mediaArray} = await ai.generate({ // Renamed for clarity, 'media' from response is an array
+      const response = await ai.generate({ 
         model: 'googleai/gemini-2.0-flash-exp', // Ensure this model is used for image generation
         prompt: `生成一张关于"${input.itemName}"的图片，该物品常被用作风水开运摆件或饰品。图片风格应美观、清晰，适合展示。`,
         config: {
@@ -41,17 +42,40 @@ const generateFengShuiItemImageFlow = ai.defineFlow(
         },
       });
 
+      const mediaArray = response.media;
+      const responseText = response.text;
+      const isBlocked = response.isBlocked;
+      const blockReason = response.blockReason;
+      const blockReasonMessage = response.blockReasonMessage;
+
       if (mediaArray && mediaArray.length > 0 && mediaArray[0] && mediaArray[0].url) {
         return mediaArray[0].url; // Access the URL from the first media part
       } else {
-        console.error('Image generation result did not contain a valid media URL. Media array:', mediaArray);
-        throw new Error('Image generation did not return a valid media URL.');
+        console.error(
+          'Image generation failed to return a valid media URL. AI Response Details:',
+          {
+            itemName: input.itemName,
+            mediaArray: mediaArray,
+            responseText: responseText,
+            isBlocked: isBlocked,
+            blockReason: blockReason,
+            blockReasonMessage: blockReasonMessage,
+            // For very detailed debugging, you might log the entire 'response' object,
+            // but be mindful of potentially large data or sensitive info in a real production scenario.
+            // fullResponse: response 
+          }
+        );
+        throw new Error('Image generation did not return a valid media URL. Please check server logs for more details.');
       }
     } catch (error) {
-      console.error('Error generating Feng Shui item image:', error);
-      // Fallback or re-throw, depending on desired error handling
-      // For now, re-throwing to let the caller handle it.
-      throw error; 
+      console.error('Error during Feng Shui item image generation flow:', error);
+      // Re-throwing to let the caller (UI) handle it, which it does by showing a fallback.
+      // If the error is already an Error instance, just rethrow. Otherwise, wrap it.
+      if (error instanceof Error) {
+        throw error;
+      }
+      throw new Error(`Failed to generate image: ${String(error)}`);
     }
   }
 );
+
