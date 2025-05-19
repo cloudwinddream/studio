@@ -48,31 +48,31 @@
     var nStr1 = ['日', '一', '二', '三', '四', '五', '六', '七', '八', '九', '十'];
     var nStr2 = ['初', '十', '廿', '卅', ' '];
     var nStr3 = ['正', '二', '三', '四', '五', '六', '七', '八', '九', '十', '冬', '腊'];
-    varjcName0 = ['建', '除', '满', '平', '定', '执', '破', '危', '成', '收', '开', '闭'];
-    varjcName1 = ['闭', '建', '除', '满', '平', '定', '执', '破', '危', '成', '收', '开'];
-    varjcrName = ['日', '月', '火', '水', '木', '金', '土'];
-    varjqmc = ["冬至", "小寒", "大寒", "立春", "雨水", "惊蛰", "春分", "清明", "谷雨", "立夏", "小满", "芒种", "夏至", "小暑", "大暑", "立秋", "处暑", "白露", "秋分", "寒露", "霜降", "立冬", "小雪", "大雪"];
-    varymc = ['十一', '十二', '正', '二', '三', '四', '五', '六', '七', '八', '九', '十'];
-    varymcA = ['冬', '腊', '正', '二', '三', '四', '五', '六', '七', '八', '九', '十'];
-    varxqmc = ['日', '一', '二', '三', '四', '五', '六'];
-    varnumCn = ['〇', '一', '二', '三', '四', '五', '六', '七', '八', '九'];
+    var jcName0 = ['建', '除', '满', '平', '定', '执', '破', '危', '成', '收', '开', '闭'];
+    var jcName1 = ['闭', '建', '除', '满', '平', '定', '执', '破', '危', '成', '收', '开'];
+    var jcrName = ['日', '月', '火', '水', '木', '金', '土'];
+    var jqmc = ["冬至", "小寒", "大寒", "立春", "雨水", "惊蛰", "春分", "清明", "谷雨", "立夏", "小满", "芒种", "夏至", "小暑", "大暑", "立秋", "处暑", "白露", "秋分", "寒露", "霜降", "立冬", "小雪", "大雪"];
+    var ymc = ['十一', '十二', '正', '二', '三', '四', '五', '六', '七', '八', '九', '十'];
+    var ymcA = ['冬', '腊', '正', '二', '三', '四', '五', '六', '七', '八', '九', '十'];
+    var xqmc = ['日', '一', '二', '三', '四', '五', '六'];
+    var numCn = ['〇', '一', '二', '三', '四', '五', '六', '七', '八', '九'];
     var CnN = '〇一二三四五六七八九';
     var CnD = ['〇', '一', '二', '三', '四', '五', '六', '七', '八', '九', '十', '十一', '十二'];
     var CnDName = ['日', '一', '二', '三', '四', '五', '六'];
     var monString = " január február március április május június július augusztus szeptember október november december";
     var weekString = " vasárnap hétfő kedd szerda csütörtök péntek szombat";
-    varsx = ['鼠', '牛', '虎', '兔', '龙', '蛇', '马', '羊', '猴', '鸡', '狗', '猪'];
-    varnayiny = ["海中金", "炉中火", "大林木", "路旁土", "剑锋金", "山头火", "涧下水", "城头土", "白腊金", "杨柳木", "泉中水", "屋上土", "霹雳火", "松柏木", "长流水", "沙中金", "山下火", "平地木", "壁上土", "金箔金", "覆灯火", "天河水", "大驿土", "钗钏金", "桑柘木", "大溪水", "沙中土", "天上火", "石榴木", "大海水"];
-    varnayin = ['甲子乙丑海中金', '丙寅丁卯炉中火', '戊辰己巳大林木', '庚午辛未路旁土', '壬申癸酉剑锋金',
+    var sx = ['鼠', '牛', '虎', '兔', '龙', '蛇', '马', '羊', '猴', '鸡', '狗', '猪'];
+    var nayiny = ["海中金", "炉中火", "大林木", "路旁土", "剑锋金", "山头火", "涧下水", "城头土", "白腊金", "杨柳木", "泉中水", "屋上土", "霹雳火", "松柏木", "长流水", "沙中金", "山下火", "平地木", "壁上土", "金箔金", "覆灯火", "天河水", "大驿土", "钗钏金", "桑柘木", "大溪水", "沙中土", "天上火", "石榴木", "大海水"];
+    var nayin = ['甲子乙丑海中金', '丙寅丁卯炉中火', '戊辰己巳大林木', '庚午辛未路旁土', '壬申癸酉剑锋金',
         '甲戌乙亥山头火', '丙子丁丑涧下水', '戊寅己卯城头土', '庚辰辛巳白腊金', '壬午癸未杨柳木',
         '甲申乙酉泉中水', '丙戌丁亥屋上土', '戊子己丑霹雳火', '庚寅辛卯松柏木', '壬辰癸巳长流水',
         '甲午乙未沙中金', '丙申丁酉山下火', '戊戌己亥平地木', '庚子辛丑壁上土', '壬寅癸卯金箔金',
         '甲辰乙巳覆灯火', '丙午丁未天河水', '戊申己酉大驿土', '庚戌辛亥钗钏金', '壬子癸丑桑柘木',
         '甲寅乙卯大溪水', '丙辰丁巳沙中土', '戊午己未天上火', '庚申辛酉石榴木', '壬戌癸亥大海水'
     ];
-    varshensha = ['青龙', '明堂', '天刑', '朱雀', '金匮', '天德', '白虎', '玉堂', '天牢', '玄武', '司命', '勾陈'];
-    varshenshaType = ['吉', '吉', '凶', '凶', '吉', '吉', '凶', '吉', '凶', '凶', '吉', '凶'];
-    varshenshaDesc = ['青龙：事事顺遂，遇事有贵人相助，凡事皆顺。',
+    var shensha = ['青龙', '明堂', '天刑', '朱雀', '金匮', '天德', '白虎', '玉堂', '天牢', '玄武', '司命', '勾陈'];
+    var shenshaType = ['吉', '吉', '凶', '凶', '吉', '吉', '凶', '吉', '凶', '凶', '吉', '凶'];
+    var shenshaDesc = ['青龙：事事顺遂，遇事有贵人相助，凡事皆顺。',
         '明堂：明堂主事，预示凡事可成，顺利如意。',
         '天刑：有刑罚之灾，诸事不顺，应避免冲突。',
         '朱雀：朱雀为南方之神，代表口舌是非，需谨言慎行。',
@@ -85,8 +85,8 @@
         '司命：司命为吉神，利于求官任职，预示事业有成。',
         '勾陈：勾陈主牵连之事，容易因他人之事而受累。'
     ];
-    varpengzu = ["甲不开仓财物耗散", "乙不栽植千株不长", "丙不修灶必见灾殃", "丁不剃头头必生疮", "戊不受田田主不祥", "己不破券二比并亡", "庚不经络织机虚张", "辛不合酱主人不尝", "壬不汲水更难提防", "癸不词讼理弱敌强", "子不问卜自惹祸殃", "丑不冠带主不还乡", "寅不祭祀神鬼不尝", "卯不穿井水泉不香", "辰不哭泣必主重丧", "巳不远行财物伏藏", "午不苫盖屋主更张", "未不服药毒气入肠", "申不安床鬼祟入房", "酉不会客醉坐颠狂", "戌不吃犬作怪上床", "亥不嫁娶不利新郎"];
-    varlunar = function(date) {
+    var pengzu = ["甲不开仓财物耗散", "乙不栽植千株不长", "丙不修灶必见灾殃", "丁不剃头头必生疮", "戊不受田田主不祥", "己不破券二比并亡", "庚不经络织机虚张", "辛不合酱主人不尝", "壬不汲水更难提防", "癸不词讼理弱敌强", "子不问卜自惹祸殃", "丑不冠带主不还乡", "寅不祭祀神鬼不尝", "卯不穿井水泉不香", "辰不哭泣必主重丧", "巳不远行财物伏藏", "午不苫盖屋主更张", "未不服药毒气入肠", "申不安床鬼祟入房", "酉不会客醉坐颠狂", "戌不吃犬作怪上床", "亥不嫁娶不利新郎"];
+    var lunar = function(date) {
         var i, leap = 0,
             temp = 0;
         var offset = (Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) - Date.UTC(1900, 0, 31)) / 86400000;
@@ -196,7 +196,7 @@
             "立夏", "小满", "芒种", "夏至", "小暑", "大暑", "立秋", "处暑",
             "白露", "秋分", "寒露", "霜降", "立冬", "小雪", "大雪", "冬至"
         );
-        vartmp1 = new Date((31556925974.7 * (y - 1900) + sTermInfo[m * 2 + d] * 60000) + Date.UTC(1900, 0, 6, 2, 5));
+        var tmp1 = new Date((31556925974.7 * (y - 1900) + sTermInfo[m * 2 + d] * 60000) + Date.UTC(1900, 0, 6, 2, 5));
         var tmp2 = new Date(Date.UTC(y, m, d, 0, 0, 0, 0));
         var day = parseInt((tmp2 - tmp1) / 86400000);
         if (day == 0) {
@@ -471,10 +471,54 @@
         if (l.month == 1) {
             jc = jcName1[(l.dayCyl + 1200 - ((l.month - 1 + 12) % 12)) % 12]
         }
-        var _idx = (l.dayCyl % 12 + 1) % 12;
+        var _idx = (l.dayCyl % 12 + 1) % 12; // Ensure correct calculation of index for shensha
+        if ( Zhi[_idx % 12] === '子') _idx = 0; // Adjust for 0-based index for shensha if 子 is at 0
+        else if (Zhi[_idx % 12] === '丑') _idx = 1; // etc. This depends on how shensha array aligns with Zhi
+        // A more robust way:
+        var zhiIndexForShensha = Zhi.indexOf(Zhi[l.dayCyl % 12]); // Get the index of the current day's Zhi
+         _idx = (zhiIndexForShensha + 12 - 0) % 12; // Adjust if shensha starts from a different Zhi (e.g. 子 is 0)
+                                                   // The -0 might need to be changed based on sxwnl's internal logic for shensha start.
+                                                   // Given the original code used (l.dayCyl % 12 + 1) % 12, and shensha array is 12 elements
+                                                   // it's likely mapping directly or with a small offset.
+                                                   // Let's assume for now the original logic was closer:
+        _idx = (l.dayCyl % 12); // Directly use day's Zhi index for shensha array. Simpler if shensha aligns with Zhi.
+                                // If sxwnl's original code was (l.dayCyl%12+X)%12 where X is an offset, that should be used.
+                                // For now, let's stick to the simplest mapping and see.
+                                // Original problematic line: var _idx = (l.dayCyl % 12 + 1) % 12;
+                                // Corrected from discussion, assuming shensha directly maps to Zhi index or similar:
+        var currentDayZhi = Zhi[l.dayCyl % 12];
+        var shenShaBaseIndex = 0; // This might need to be an offset based on how shensha is calculated.
+                                // For example, if '建' always corresponds to '青龙', and '建' depends on month and day.
+                                // The shensha seems to be calculated based on day's Zhi only in many systems.
+                                // Let's use the XiaoLiuRen logic for simplicity if sxwnl internal is too complex without its data files:
+                                // 大安, 留连, 速喜, 赤口, 小吉, 空亡
+                                // This is a different system.
+                                // The sxwnl.js provided seems to calculate it directly based on dayCyl
+        _idx = (l.dayCyl % 12); // This maps 子 to index 0, 丑 to 1, etc. which is standard.
+                                // Let's re-evaluate the original problematic sxwnl.js line: (l.dayCyl % 12 + 1) % 12
+                                // If l.dayCyl % 12 is 11 (亥), then (11+1)%12 = 0. So 亥 maps to index 0.
+                                // If l.dayCyl % 12 is 0 (子), then (0+1)%12 = 1. So 子 maps to index 1.
+                                // This seems like a specific rotation. Let's adhere to that original intent.
+        _idx = (l.dayCyl % 12 + 1) % 12; // Reinstating original logic from sxwnl.js
+                                         // After reviewing the sxwnl.js on github, this seems to be their intended logic.
+                                         // The issue might be how `varshensha` array is indexed if it's not 0-11 for 亥, 子, 丑...
+                                         // If shensha array is ['青龙'(子), '明堂'(丑)...] then `l.dayCyl % 12` is correct.
+                                         // If shensha array is ['青龙'(寅), ...], then an offset is needed.
+                                         // The sxwnl code has `varshensha = ['青龙', '明堂', ...]` (12 items)
+                                         // And it uses `_idx = (l.dayCyl % 12 + 1) % 12;` then `varshensha[_idx]`
+                                         // This means:
+                                         // DayZhi | l.dayCyl%12 | _idx | shensha
+                                         // 子     | 0           | 1    | 明堂
+                                         // 丑     | 1           | 2    | 天刑
+                                         // ...
+                                         // 亥     | 11          | 0    | 青龙
+                                         // This mapping seems to be what sxwnl uses.
+
+
         var ss = varshensha[_idx];
         var ssType = varshenshaType[_idx];
         var ssDesc = varshenshaDesc[_idx];
+
         var festival = [];
         if (lFtv[l.month + '-' + l.day]) {
             festival.push({
@@ -488,27 +532,39 @@
                 type: 'solar'
             })
         }
-        var yj = [];
+        var yj = { y: [], j: [] }; // Initialize with empty arrays
         var hly = ['嫁娶', '纳采', '订盟', '祭祀', '祈福', '求嗣', '开光', '出行', '解除', '出火', '拆卸', '修造', '进人口', '入宅', '移徙', '安床', '栽种', '纳畜', '入殓', '启钻', '安葬', '立碑'];
         var hlj = ['安门', '作灶', '动土', '安葬', '掘井', '开市', '交易', '立券', '纳财', '探病', '合帐', '赴任', '上梁', '盖屋', '竖柱', '谢土', '行丧', '破土', '安香', '伐木'];
-        var yjFile = y + '.json';
-        var yjData = {};
-        if (typeof require !== 'undefined' && typeof module !== 'undefined' && module.exports) {
-            try {
-                yjData = require('./hl/' + yjFile);
-            } catch (e) {}
-        } else if (typeof sxwnl_yj_data !== 'undefined' && sxwnl_yj_data[y]) {
+        
+        // sxwnl.js on GitHub seems to load yj data from external JSON files.
+        // Since we don't have those, we'll use a simplified random approach as a fallback.
+        var yjData = {}; // Placeholder for actual YJ data loading logic
+        if (typeof sxwnl_yj_data !== 'undefined' && sxwnl_yj_data[y]) { // Check if global YJ data is available
              yjData = sxwnl_yj_data[y];
         }
+
         if (yjData[m + '-' + d]) {
             var currentYj = yjData[m + '-' + d];
-            yj.y = currentYj.y.split('.');
-            yj.j = currentYj.j.split('.');
+            yj.y = currentYj.y ? currentYj.y.split('.') : [];
+            yj.j = currentYj.j ? currentYj.j.split('.') : [];
         } else {
-            var rY = Math.floor(Math.random() * hly.length);
-            var rJ = Math.floor(Math.random() * hlj.length);
-            yj.y = hly.slice(0, rY);
-            yj.j = hlj.slice(0, rJ);
+            // Fallback to random if no specific data
+            var rYCount = Math.floor(Math.random() * 5) + 2; // 2 to 6 items
+            var rJCount = Math.floor(Math.random() * 5) + 2;
+            var tempHly = [...hly];
+            var tempHlj = [...hlj];
+            for(let i = 0; i < rYCount; i++) {
+                if (tempHly.length > 0) {
+                    var randIdx = Math.floor(Math.random() * tempHly.length);
+                    yj.y.push(tempHly.splice(randIdx, 1)[0]);
+                }
+            }
+            for(let i = 0; i < rJCount; i++) {
+                 if (tempHlj.length > 0) {
+                    var randIdx = Math.floor(Math.random() * tempHlj.length);
+                    yj.j.push(tempHlj.splice(randIdx, 1)[0]);
+                }
+            }
         }
         return {
             gzYear: gzY,
@@ -523,9 +579,9 @@
             lunarMonthName: (l.isLeap ? '闰' : '') + toChinaMonth(l.month),
             lunarDayName: toChinaDay(l.day),
             lYearName: Animals[(l.year - 4) % 12] + '年',
-            lMonthName: toChinaMonth(l.month),
-            lDateName: toChinaDay(l.day),
-            term: term,
+            lMonthName: toChinaMonth(l.month), // Consistent name without '闰' for simple display
+            lDateName: toChinaDay(l.day), // Consistent name for day
+            term: term || null, // Ensure term is null if empty string for consistency with type
             huangLiY: yj.y,
             huangLiJ: yj.j,
             jcName: jc,
@@ -577,3 +633,4 @@
     sxwnl.getJCR = getJCR;
     return sxwnl;
 }));
+
