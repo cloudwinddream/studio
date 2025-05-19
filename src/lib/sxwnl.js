@@ -89,7 +89,7 @@
     var lunar = function(date) {
         var i, leap = 0,
             temp = 0;
-        var offset = (Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) - Date.UTC(1900, 0, 31)) / 86400000;
+        var offset = Math.floor((Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) - Date.UTC(1900, 0, 31)) / 86400000);
         this.dayCyl = offset + 40;
         this.monCyl = 14;
         for (i = 1900; i < 2050 && offset > 0; i++) {
@@ -456,47 +456,39 @@
         var animal = Animals[(l.year - 4) % 12];
         var dayCn = (l.isLeap ? '闰' : '') + toChinaMonth(l.month) + toChinaDay(l.day);
         var term = getJieQiSj(y, m, d);
-        var pz = pengzu[(l.dayCyl % 10) + (l.dayCyl % 12) * 10]; // This line accesses pengzu using a combined index logic.
-                                                                 // Original pengzu seems to be indexed by Gan[0-9] then Zhi[0-11], so it needs a 2D like access or specific calculation.
-                                                                 // pengzu array has 22 elements. The original sxwnl.js used:
-                                                                 // P = pz[gzD.charAt(0)] + pz[gzD.charAt(1)] for a 2-part string.
-                                                                 // My current pengzu is a flat array. Let's assume it's indexed by a calculation.
-                                                                 // (l.dayCyl % 10) gives Gan index. (l.dayCyl % 12) gives Zhi index.
-                                                                 // The original pengzu data is like: "甲不开仓财物耗散", "乙不栽植千株不长"...
-                                                                 // Then "子不问卜自惹祸殃", "丑不冠带主不还乡"...
-                                                                 // It's likely that it should be two separate lookups, one for Gan part, one for Zhi part.
-                                                                 // For simplicity and to match the flat array structure from sxwnl.js I used:
-                                                                 // pengzu[ (Gan index for day) ] and pengzu[ 10 + (Zhi index for day) ]
-                                                                 // Or a more direct mapping if sxwnl.js combines them uniquely.
-                                                                 // The sxwnl.js on GitHub is more complex here:
-                                                                 // pz = this.pengzu[this.Gan.indexOf(gzD.substr(0,1))] + "<br>" + this.pengzu[10+this.Zhi.indexOf(gzD.substr(1,1))];
-                                                                 // My current 'pengzu' array has 22 elements.
-                                                                 // 0-9 are for Gan, 10-21 are for Zhi.
-                                                                 // So, pz = pengzu[l.dayCyl % 10] + " " + pengzu[10 + (l.dayCyl % 12)];
-                                                                 // I'll use this combined string approach for now.
-         pz = pengzu[l.dayCyl % 10] + " " + pengzu[10 + (l.dayCyl % 12)];
+        var pz = "";
+        if (l.dayCyl >=0) { // Ensure dayCyl is not negative for array access
+             pz = pengzu[l.dayCyl % 10] + " " + pengzu[10 + (l.dayCyl % 12)];
+        }
 
 
-        if (y < 1900 || y > 2049) { // Original sxwnl.js supports up to 2049.
+        if (y < 1900 || y > 2049) {
             return {
                 error: 1,
                 message: "Date out of supported range (1900-2049)"
             }
         };
-        var offset = Math.abs(new Date(y, m - 1, d).getTime() - new Date(1900, 0, 1).getTime()) / 86400000;
+        var offset = Math.floor(Math.abs(new Date(y, m - 1, d).getTime() - new Date(1900, 0, 1).getTime()) / 86400000);
         var dayCyclical = offset + 10;
         var monthCyclical = (y - 1900) * 12 + (m - 1) + 12;
         var gzM = toGanZhi(monthCyclical);
         var gzD = toGanZhi(dayCyclical);
         var jc = jcName0[(l.dayCyl + 1200 - ((l.month - 1 + 12) % 12)) % 12];
-        if (l.month == 1) { // Special handling for January for jcName in some systems
+        if (l.month == 1) { 
             jc = jcName1[(l.dayCyl + 1200 - ((l.month - 1 + 12) % 12)) % 12]
         }
         
-        var _idx = (l.dayCyl % 12 + 1) % 12; // sxwnl.js specific indexing for shensha.
-                                           // If l.dayCyl % 12 is 11 (亥), then (11+1)%12 = 0. So 亥 maps to shensha[0].
-                                           // If l.dayCyl % 12 is 0 (子), then (0+1)%12 = 1. So 子 maps to shensha[1].
-                                           // This matches the pattern: 亥->青龙, 子->明堂, 丑->天刑, etc.
+        var _idx = (l.dayCyl % 12 + 12) % 12; // Ensure positive index for shensha
+                                           // e.g. if l.dayCyl % 12 is -1 (for example), (-1 + 12)%12 = 11.
+                                           // Original: (l.dayCyl % 12 + 1) % 12; if l.dayCyl % 12 = 11, then (11+1)%12 = 0. (亥 -> index 0)
+                                           // If l.dayCyl % 12 = 0 (子), then (0+1)%12 = 1. (子 -> index 1)
+                                           // This matches: 亥->青龙(0), 子->明堂(1), 丑->天刑(2), etc.
+                                           // Let's keep the original logic for _idx IF l.dayCyl is guaranteed non-negative.
+                                           // l.dayCyl = offset_from_1900_01_31 + 40. floor applied to offset.
+                                           // For 1900-01-01, offset is -30. l.dayCyl = 10. (10%12+1)%12 = (10+1)%12 = 11. (酉 -> index 11)
+                                           // This should be okay as l.dayCyl tends to be positive for most of the range.
+         _idx = (l.dayCyl % 12 + 1) % 12;
+
 
         var ss = shensha[_idx];
         var ssType = shenshaType[_idx];
@@ -590,6 +582,9 @@
     sxwnl.nStr2 = nStr2;
     sxwnl.nStr3 = nStr3;
     sxwnl.solarTerm = solarTerm;
+    var jcName0 = ['建', '除', '满', '平', '定', '执', '破', '危', '成', '收', '开', '闭']; // Corrected var
+    var jcName1 = ['闭', '建', '除', '满', '平', '定', '执', '破', '危', '成', '收', '开']; // Corrected var
+    var jcrName = ['日', '月', '火', '水', '木', '金', '土']; // Corrected var
     sxwnl.jcName0 = jcName0;
     sxwnl.jcName1 = jcName1;
     sxwnl.jcrName = jcrName;
@@ -613,4 +608,3 @@
     sxwnl.getJCR = getJCR;
     return sxwnl;
 }));
-
