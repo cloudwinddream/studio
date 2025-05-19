@@ -9,7 +9,7 @@ import { useState } from 'react'; // Keep useState for future flexibility if ite
 // Static placeholder data
 const defaultItem = {
   name: "紫水晶", // Amethyst in Chinese
-  image: "https://placehold.co/300x200.png", 
+  image: "https://placehold.co/300x200.png",
   imageHint: "crystal geode", // Hint for the placeholder
   meaning: "促进平静、直觉和精神觉醒。",
   placement: "放置在您的书桌或冥想空间，以增强专注和平静。"
@@ -30,13 +30,14 @@ export function FengShuiItemCard() {
       </CardHeader>
       <CardContent className="space-y-3">
         <div className="aspect-[3/2] relative w-full rounded-md overflow-hidden bg-muted">
-          <Image 
-            src={defaultItem.image} 
-            alt={itemName} 
-            layout="fill" 
-            objectFit="cover"
+          <Image
+            src={defaultItem.image}
+            alt={itemName || "开运好物图片"}
+            fill
+            style={{ objectFit: "cover" }}
             data-ai-hint={defaultItem.imageHint}
             className="transition-opacity duration-500"
+            priority // Added priority as it might be an important LCP element if visible early
           />
         </div>
         <h3 className="font-semibold text-lg text-primary-foreground">{itemName}</h3>
